@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10.5.8
+    container_name: laravel_posty
+    environment:
+      MYSQL_ROOT_PASSWORD: posty
+      MYSQL_DATABASE: posty
+    ports:
+      - "4000:3306"
+    volumes:
+        - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  admin:
+    image: adminer
+    container_name: adminer_posty
+    ports:
+      - "8080:8080"
